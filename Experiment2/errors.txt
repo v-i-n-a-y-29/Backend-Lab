@@ -1,0 +1,8 @@
+app.use(express.json()); // For parsing application/json
+// I was getting error and then i added a middleware for parsing the data
+
+
+In the http module i was getting error while sending x-www-form-urlencoded
+fix  - send the raw json data 
+or
+add (req.headers["content-type"] === "application/x-www-form-urlencoded")
