@@ -79,8 +79,6 @@ app.put('/tasks/byname/:name', async (req, res) => {
     }
 });
 
-
-
 // delete (DELETE) using name ----------------------
 app.delete('/tasks/byname/:name', async (req, res) => {
     try {
@@ -97,8 +95,6 @@ app.delete('/tasks/byname/:name', async (req, res) => {
         return res.status(500).json({ error: err.message });
     }
 });
-
-
 
 app.listen(3000, async () => {
     console.log("App is running on port 3000");

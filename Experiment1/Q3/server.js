@@ -2,7 +2,7 @@ const http = require('http')
 const fs = require('fs');
 
 const server = http.createServer((req, res) => {
-    fs.readFile('./test.txt', 'utf-8', (err, data) => {
+    fs.readFile('c:/Users/VICTUS/Desktop/Backend Dev Lab/Experiment1/Q2/test.txt', 'utf-8', (err, data) => {
         if (err) {
             console.error('Could not find or read the file', err);
             res.writeHead(500, { 'Content-Type': 'text/plain' });

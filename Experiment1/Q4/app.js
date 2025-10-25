@@ -1,7 +1,6 @@
 const fs=require('fs')
 
-const stream=fs.createReadStream('./daa.txt')
-
+const stream=fs.createReadStream('./data.txt')
 // Read and display the file data on console
 stream.on('data', function (chunk) {
     console.log(chunk.toString());
