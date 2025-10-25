@@ -10,6 +10,7 @@ const server = http.createServer((req, res) => {
   res.setHeader("Content-Type", "application/json");
 
   // GET: Show all tasks
+  // GET - localhost:3000/tasks
   if (req.method === "GET" && req.url === "/tasks") {
     res.end(JSON.stringify(tasks));
   }
