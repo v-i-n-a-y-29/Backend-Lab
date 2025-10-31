@@ -18,6 +18,10 @@ app.get('/tasks', async (req, res) => {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
         // to calc how many documents to skip
+        // 15 = content
+        // limit =5 , total pages = 3
+        // page = 2
+        // skip = 1
         const skip = (page-1)*limit;
         const tasks = await taskModel.find({}).skip(skip).limit(limit);
         
@@ -26,6 +30,7 @@ app.get('/tasks', async (req, res) => {
         
         // count the total pages
         const totalPages = Math.ceil(totalTasks/limit)
+        // 14 / 5 = 2.8 -> 3
 
         return res.status(200).json({
             total: totalTasks,
