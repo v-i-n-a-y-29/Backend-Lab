@@ -1,12 +1,12 @@
 const express = require('express')
-const connectDB = require('../Experiment5 & 6/db/databaseConnection')
+const { connectDB } = require('./db/databaseConnection');
 const app = express()
 // Add middleware to parse JSON and URL-encoded request bodies
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const taskModel = require('../Experiment5 & 6/models/task-Model')
-const userModel = require('../Experiment5 & 6/models/user-Model')
+const taskModel = require('./models/task-Model')
+const userModel = require('./models/user-Model')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const auth = require('./middleware/auth');
@@ -197,7 +197,19 @@ app.delete('/tasks/byname/:name', auth, async (req, res) => {
 
 
 
-app.listen(3000, async () => {
-    console.log("App is running on port 3000");
-    await connectDB('mongodb://localhost:27017/todolist')
-});
+// Only connect to the database and start the server if this file is run directly
+if (require.main === module) {
+    const startServer = async () => {
+        try {
+            await connectDB('mongodb://localhost:27017/todolist');
+            app.listen(3000, () => {
+                console.log("App is running on port 3000");
+            });
+        } catch (err) {
+            console.error("Failed to start server", err);
+        }
+    };
+    startServer();
+}
+
+module.exports = app;
